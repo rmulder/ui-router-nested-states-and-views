@@ -1,6 +1,6 @@
 {
   "generator-ngbp": {
-    "projectName": "dsp",
+    "projectName": "app",
     "useCoffeescript": false
   }
 }

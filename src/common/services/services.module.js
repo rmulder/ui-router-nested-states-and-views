@@ -1,6 +1,6 @@
 'use strict';
 /*jshint bitwise: false*/
-var _ = _ || {}, DSP = DSP || {}, dataLayer = dataLayer || [];
+var _ = _ || {}, APP = APP || {}, dataLayer = dataLayer || [];
 angular.module('app.services', ['app.config'])
   .factory('serverService', ['$http', '$q', '$rootScope', '$state', 'appConfig', '$timeout', '$location', '$log',
     function ($http, $q, $rootScope, $state, appConfig, $timeout, $location, $log) {
@@ -60,10 +60,10 @@ angular.module('app.services', ['app.config'])
       };
 
       var removeNamespacePrefix = function(results, appConfig) {
-        if (DSP.debug) {$log.info('called removeNamespacePrefix!');}
+        if (APP.debug) {$log.info('called removeNamespacePrefix!');}
         var models = Object.keys(_.invert(appConfig.appModels)), model, field, modelObj, newResults = {},
             res = angular.merge({}, results), objKeys = Object.keys(results);
-        if (DSP.debug) {
+        if (APP.debug) {
           $log.info('models:', models, 'object keys:', objKeys);
           $log.info('results - before model changes:', res);
         }
@@ -75,7 +75,7 @@ angular.module('app.services', ['app.config'])
             model = key;
           }
 
-          if (DSP.debug) {$log.info('model:', model, 'obj:', obj);}
+          if (APP.debug) {$log.info('model:', model, 'obj:', obj);}
           if (models.indexOf(key) > -1 || !isNaN(parseInt(key, 10))) {
             if (_.isObject(obj)) {
               modelObj = {};
@@ -91,7 +91,7 @@ angular.module('app.services', ['app.config'])
                 modelObj[field] = fval;
               });
 
-              if (DSP.debug) {$log.info('modelObj:', modelObj);}
+              if (APP.debug) {$log.info('modelObj:', modelObj);}
               //$log.info('removeNamespacePrefix - model: ' + model + '; modelObj:', modelObj);
               newResults[model] = modelObj;
             }
@@ -105,17 +105,17 @@ angular.module('app.services', ['app.config'])
 
       var preProcessResults = function (results, $rootScope, appConfig, $location, params, request) {
         var pageFields = {};
-        if (DSP.debug) {$log.info('inside preProcessResults:', results);}
+        if (APP.debug) {$log.info('inside preProcessResults:', results);}
         $rootScope.displayFields = {};
         _.each(appConfig.appConstants.errorKeys, function (key) {
           if (results[key]) {
-            if (DSP.debug) {$log.info('Found error for key: ' + key, results[key]);}
+            if (APP.debug) {$log.info('Found error for key: ' + key, results[key]);}
             var errors = results[key];
             if (errors['Body']) {
               errors = errors['Body'];
             }
 
-            if (DSP.debug) {$log.info('errors:', errors);}
+            if (APP.debug) {$log.info('errors:', errors);}
             var alerts = errors.split(/(?:\r\n|\r|\n)/), msg;
             _.each(alerts, function (alert) {
               if (alert.length > 0) {
@@ -232,7 +232,7 @@ angular.module('app.services', ['app.config'])
           }
         });
 
-        DSP.results = angular.merge({}, results);
+        APP.results = angular.merge({}, results);
         if (request === 'getAppFields') {
           if (appConfig.appConstants.controller === null) {
             results = angular.merge(appConfig.appValues.models, results);
@@ -242,7 +242,7 @@ angular.module('app.services', ['app.config'])
           angular.extend(appConfig.appValues.models, results);
         }
 
-        if (DSP.debug) {$log.info('preProcessResults: results:', angular.merge({}, results));}
+        if (APP.debug) {$log.info('preProcessResults: results:', angular.merge({}, results));}
         return results;
       };
 
@@ -252,7 +252,7 @@ angular.module('app.services', ['app.config'])
         params.ut = appConfig.appConstants.ut;
         params.debug = (appConfig.appConstants.debug)? true : false;
 
-        if (DSP.debug) {$log.info('initial query params to send to backend:', params);}
+        if (APP.debug) {$log.info('initial query params to send to backend:', params);}
       };
 
       var factory = function (request, $http, $q, $rootScope, $state, appConfig, $timeout, $location, $log,
@@ -262,9 +262,9 @@ angular.module('app.services', ['app.config'])
             var deferred = $q.defer(), params = _.clone(tmpParams || {}), attrname, obj, pos,
                 pageName = $state.current.pageName || 'GetStartedPage';
 
-            if (DSP.debug) {$log.info('query params - before:', params);}
+            if (APP.debug) {$log.info('query params - before:', params);}
             setQueryParams(params, appConfig);
-            if (DSP.debug) {$log.info('query params - after setQueryParams:', params);}
+            if (APP.debug) {$log.info('query params - after setQueryParams:', params);}
             if (params.hasOwnProperty('pageName')) {
               pageName = params['pageName'];
               delete params['pageName'];
@@ -285,7 +285,7 @@ angular.module('app.services', ['app.config'])
             _.each(appConfig.appConstants.localDataKeys, function (key) {
               //$log.info('localDataKey: ' + key);
               if (params[key]) {
-                if (DSP.debug) {$log.info('Deleting localDataKey: ' + key);}
+                if (APP.debug) {$log.info('Deleting localDataKey: ' + key);}
                 delete params[key];
               }
 
@@ -303,7 +303,7 @@ angular.module('app.services', ['app.config'])
             });
 
             $log.info('Before method call: ' + request + '; for page: ' + pageName, 'cloned params:', _.clone(params));
-            if (DSP.debug) {$log.info('appConfig:', appConfig);}
+            if (APP.debug) {$log.info('appConfig:', appConfig);}
             if (appConfig.appConstants.controller === null) {
               var path = 'assets/services/', page, productPage;
               try {
@@ -316,14 +316,14 @@ angular.module('app.services', ['app.config'])
                   }
 
                   productPage = page;
-                  if (DSP && DSP.product) {
-                    productPage = page + '-' + DSP.product.replace(' ', '-').toLowerCase();
+                  if (APP && APP.product) {
+                    productPage = page + '-' + APP.product.replace(' ', '-').toLowerCase();
                   }
 
-                  if (DSP.debug) {$log.info('appConfig.appConstants.models:', appConfig.appConstants.models);}
+                  if (APP.debug) {$log.info('appConfig.appConstants.models:', appConfig.appConstants.models);}
                   //$log.info('currentPage:', appConfig.appValues.currentPage, 'appConfig:', appConfig, 'page:' + page,
                   //  'productPage:' + productPage, 'currentRoute:', appConfig.appPagesRoutes[appConfig.appValues.currentPage]);
-                  if (DSP.debug) {$log.info('query.local.params:', params);}
+                  if (APP.debug) {$log.info('query.local.params:', params);}
                   $http({method: 'GET', url: path + productPage + '.json'})
                     .success(function (results) {
                       var tmp = angular.merge({}, results);
@@ -339,7 +339,7 @@ angular.module('app.services', ['app.config'])
                       }, 1000);
                     })
                     .error(function () {
-                      //$log.info('Error!' + path + page + '-' + DSP.product.replace(' ', '-').toLowerCase() + '.json not found!');
+                      //$log.info('Error!' + path + page + '-' + APP.product.replace(' ', '-').toLowerCase() + '.json not found!');
                       $http.get(path + page + '.json')
                         .success(function (results) {
                           //$log.info('query local results:', results);
@@ -673,11 +673,11 @@ angular.module('app.services', ['app.config'])
     function (serverService, $http, $q, $rootScope, $state, appConfig, $timeout, $location, $log) {
       return serverService.factory('getCountiesByState', $http, $q, $rootScope, $state, appConfig, $timeout, $location, $log,
         function (params, results) {
-          if (DSP.debug) {$log.info('inside callExternalMethod - local results:', results);}
+          if (APP.debug) {$log.info('inside callExternalMethod - local results:', results);}
           return results;
         },
         function (params, results) {
-          if (DSP.debug) {$log.info('inside callExternalMethod - remote results:', results);}
+          if (APP.debug) {$log.info('inside callExternalMethod - remote results:', results);}
           return results;
         }
       );

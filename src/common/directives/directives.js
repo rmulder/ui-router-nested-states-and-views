@@ -1,6 +1,6 @@
 'use strict';
 /*jshint bitwise: false*/
-var _ = _ || {}, DSP = DSP || {};
+var _ = _ || {}, APP = APP || {};
 
 angular.module('app.directives', []);
 angular.module('app.directives')

@@ -1,6 +1,6 @@
 'use strict';
 
-var DSP = DSP || {};
+var APP = APP || {};
 angular.module('app.config', ['app.namespace'])
   .value('appValues', {
     currentPage: '',
@@ -66,8 +66,8 @@ angular.module('app.config', ['app.namespace'])
       notesObjectKeys: ['pageFields', 'status', 'extensionClass'],
       notesListKeys: ['fieldsToDisplay'],
       jsonDataKeys: ['pageFields']
-    }, DSP);
-    //console.log('appConstants:namespace.DSP:', DSP);
+    }, APP);
+    //console.log('appConstants:namespace.APP:', APP);
     //console.log('appConstants: ', appConstants);
     return appConstants;
   })())

@@ -2,8 +2,8 @@
 
 angular.module('app.namespace', [])
   .factory('namespace', [function() {
-    var DSP = DSP || {};
+    var APP = APP || {};
     return {
-      DSP: DSP
+      APP: APP
     };
   }]);
