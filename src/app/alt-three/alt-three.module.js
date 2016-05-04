@@ -20,7 +20,7 @@
       }
     });
   });
-}(angular.module('ui-router-named-views.alt-three', [
+}(angular.module('app.alt-three', [
   'ui.router',
   'blink'
 ])));

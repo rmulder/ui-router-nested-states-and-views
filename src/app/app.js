@@ -36,10 +36,13 @@
       }
     ]);
 
-  }(angular.module('ui-router-named-views', [
-    'ui-router-named-views.alt-one',
-    'ui-router-named-views.alt-two',
-    'ui-router-named-views.alt-three',
+  }(angular.module('app', [
+    'app.namespace',
+    'app.config',
+    'app.services',
+    'app.alt-one',
+    'app.alt-two',
+    'app.alt-three',
     'templates-app',
     'templates-common',
     'ui.router'

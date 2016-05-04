@@ -14,6 +14,6 @@
       }
     });
   });
-}(angular.module('ui-router-named-views.alt-two', [
+}(angular.module('app.alt-two', [
   'ui.router'
 ])));
