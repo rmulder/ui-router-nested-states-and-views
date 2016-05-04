@@ -40,7 +40,6 @@
     'ui-router-named-views.alt-one',
     'ui-router-named-views.alt-two',
     'ui-router-named-views.alt-three',
-    'egghead-banner',
     'templates-app',
     'templates-common',
     'ui.router'
@@ -71,9 +70,5 @@
       };
     }
   ]);
-
-  angular.module('templates-app', ['alt-one/alt-one.content.tpl.html', 'alt-three/alt-three.content.tpl.html', 'alt-three/alt-three.header.tpl.html', 'alt-two/alt-two.content.tpl.html', 'alt-two/alt-two.header.tpl.html', 'common/content.tpl.html', 'common/footer.tpl.html', 'common/header.tpl.html', 'common/sidebar.tpl.html']);
-
-  angular.module('templates-common', ['directives/egghead-banner/egghead-banner.tpl.html']);
 
 })( window, window.angular );

@@ -1,9 +1,9 @@
 {
-  "name": "dsp",
+  "name": "ui-router-nested-states-and-views",
   "version": "3.1.0",
-  "author": "Terafina, Inc",
-  "description": "New DSP (Digital Sales Platform) static resources file",
-  "repository": "https://github.com/TerafinaInc/Terafina-DSP-3.0/tree/master/resource-dependencies/dsp3_1.resource",
+  "author": "Robert Mulder",
+  "description": "Sample AngularJS/UI Router app with nested states and views",
+  "repository": "https://github.com/rmulder/ui-router-nested-states-and-views",
   "license": "MIT",
   "devDependencies": {
     "grunt": "^0.4.5",

@@ -144,7 +144,6 @@ module.exports = function (grunt) {
         'vendor/bootstrap/less/**/*.less'
       ],
       assets: [
-        'less_test.html',
         'less/**',
         'assets/**',
         'common/**/*.less',
