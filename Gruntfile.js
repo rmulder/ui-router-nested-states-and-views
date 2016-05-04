@@ -19,7 +19,6 @@ module.exports = function (grunt) {
   var fileConfig = {
     dist_dir: 'dist',
     compile_dir: 'dist',
-    current_dir: current_dir,
     deployRoot: './', 
 
     /**
@@ -39,14 +38,12 @@ module.exports = function (grunt) {
         'src/**/*.js',
         '!./src/**/*.module.js',
         '!src/**/*.spec.js',
-        '!src/**/*.newdesign.js',
         '!src/assets/**/*.js'
       ],
       jsunit: ['src/**/*.spec.js'],
 
       appTemplates: ['src/app/**/*.tpl.html'],
       commonTemplates: ['src/common/**/*.tpl.html'],
-      htmlFiles: ['src/app/newdesign/examples/**/*'],
 
       html: ['src/index.html'],
       ico: [
@@ -55,9 +52,7 @@ module.exports = function (grunt) {
         'browserconfig.xml'
       ],
       less: [
-        'src/less/main.less', 'vendor/bootstrap/bootstrap.less',
-        'src/less/style.less', 'vendor/bootstrap/bootstrap.less',
-        'src/less/style-blue.less', 'vendor/bootstrap/bootstrap.less'
+        'src/less/main.less', 'vendor/bootstrap/bootstrap.less'
       ]
     },
 
@@ -103,17 +98,10 @@ module.exports = function (grunt) {
         'vendor/angular-ui-utils/modules/route/route.js',
         'vendor/angular-animate/angular-animate.min.js',
         'vendor/angular-messages/angular-messages.min.js',
-        'vendor/angular-aria/angular-aria.min.js',
         'vendor/angular-resource/angular-resource.min.js',
         'vendor/angular-touch/angular-touch.min.js',
         'vendor/lodash/lodash.min.js',
         'vendor/angular-ui-utils/ui-utils.min.js',
-        'vendor/moment/min/moment.min.js',
-        'vendor/angular-momentjs/angular-momentjs.min.js',
-        'vendor/angular-translate/angular-translate.min.js',
-        'vendor/angular-translate-loader-url/angular-translate-loader-url.min.js',
-        'vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js',
-        'vendor/ng-idle/angular-idle.min.js',
         'vendor/angular-loading-bar/build/loading-bar.min.js',
         'vendor/ng-currency/dist/ng-currency.min.js'
       ],
@@ -126,14 +114,10 @@ module.exports = function (grunt) {
         'vendor/angular-animate/angular-animate.min.js.map',
         'vendor/angular-messages/angular-messages.min.js.map',
         'vendor/angular-mask/dist/ngMask.min.map',
-        'vendor/angular-aria/angular-aria.min.js.map',
         'vendor/angular-resource/angular-resource.min.js.map',
         'vendor/angular-sanitize/angular-sanitize.min.js.map',
         'vendor/angular-touch/angular-touch.min.js.map',
         'vendor/lodash/lodash.min.js.map',
-        'vendor/angular-momentjs/angular-momentjs.min.js.map',
-        'vendor/angular-translate/angular-translate.min.js.map',
-        'vendor/ng-idle/angular-idle.map',
         'vendor/angular-formly/dist/formly.min.js.map',
         'vendor/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.min.js.map'
       ],
@@ -203,16 +187,6 @@ module.exports = function (grunt) {
             src: ['**'],
             dest: '<%= pkg.deployRoot %><%= dist_dir %>/assets/',
             cwd: 'src/assets',
-            expand: true
-          }
-        ]
-      },
-      build_html_assets: {
-        files: [
-          {
-            src: ['<%= app_files.htmlFiles %>'],
-            dest: '<%= pkg.deployRoot %><%= dist_dir %>/',
-            cwd: '.',
             expand: true
           }
         ]
@@ -429,9 +403,7 @@ module.exports = function (grunt) {
     less: {
       build: {
         files: {
-          '<%= pkg.deployRoot %><%= dist_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.less[0] %>',
-          '<%= pkg.deployRoot %><%= dist_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>-style.css': '<%= app_files.less[2] %>',
-          '<%= pkg.deployRoot %><%= dist_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>-style-blue.css': '<%= app_files.less[4] %>'
+          '<%= pkg.deployRoot %><%= dist_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.less[0] %>'
         }
       },
       compile: {
@@ -645,17 +617,6 @@ module.exports = function (grunt) {
       },
 
       /**
-       * When assets are changed, copy them. Note that this will *not* copy new
-       * files, so this is probably not very useful.
-       */
-      html_assets: {
-        files: [
-          '<%= app_files.htmlFiles %>'
-        ],
-        tasks: ['copy:build_html_assets']
-      },
-
-      /**
        * When index.html changes, we need to compile it.
        */
       html: {
@@ -730,7 +691,7 @@ module.exports = function (grunt) {
 
   // The 'build' task gets your app ready to run for development and testing.
   grunt.registerTask('build', [
-    'clean:all', 'html2js', 'jshint', 'less:build', 'concat:build_css', 'copy:build_appico',  'copy:build_html_assets',
+    'clean:all', 'html2js', 'jshint', 'less:build', 'concat:build_css', 'copy:build_appico',
     'copy:build_app_assets', 'copy:build_vendor_assets', 'copy:build_vendorcss', 'copy:build_appjs',
     'copy:build_vendorjs', 'copy:build_vendorjs_map', 'ngAnnotate:build', 'index:build', 'karmaconfig', 'karma:continuous','less:compile',
     'copy:compile_assets', 'copy:compile_ico', 'concat:compile_js', 'copy:compile_jsmap', 'concat:compile_css', 'uglify', 'index:compile'

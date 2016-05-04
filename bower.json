@@ -5,19 +5,14 @@
   "dependencies": {
     "angular": "1.4.3",
     "angular-animate": "1.4.3",
-    "angular-aria": "1.4.3",
     "angular-bootstrap": "0.14.3",
     "angular-formly": "6.20.0",
     "angular-formly-templates-bootstrap": "6.1.5",
     "angular-mask": "3.0.12",
     "angular-messages": "1.4.3",
-    "angular-momentjs": "0.2.2",
     "angular-resource": "1.4.3",
     "angular-sanitize": "1.4.3",
     "angular-touch": "1.4.3",
-    "angular-translate": "2.7.2",
-    "angular-translate-loader-static-files": "~2.7.2",
-    "angular-translate-loader-url": "~2.7.2",
     "angular-ui-router": "0.2.15",
     "angular-ui-select": "0.13.2",
     "angular-ui-utils": "0.2.3",
@@ -25,18 +20,13 @@
     "bootstrap": "3.3.6",
     "less.js": "2.5.1",
     "lodash": "3.6.0",
-    "moment": "2.10.3",
-    "ng-currency": "0.8.7",
-    "ng-idle": "1.1.0"
+    "ng-currency": "0.8.7"
   },
   "devDependencies": {
     "angular-mocks": "1.4.3",
     "angular-scenario": "1.4.3"
   },
   "resolutions": {
-    "angular-translate": "2.7.2",
-    "angular": "1.4.3",
-    "angular-bootstrap": "0.14.3",
-    "angular-sanitize": "1.4.3"
+    "angular": "1.4.3"
   }
 }

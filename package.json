@@ -1,5 +1,5 @@
 {
-  "name": "ui-router-nested-states-and-views",
+  "name": "app",
   "version": "3.1.0",
   "author": "Robert Mulder",
   "description": "Sample AngularJS/UI Router app with nested states and views",
