@@ -31,7 +31,7 @@
 
     app.controller('AppController', ['$scope', '$rootScope', '$state',
       function ($scope, $rootScope, $state) {
-        console.log('AppController - $state:', $state, '$rootScope: ', $rootScope);
+        console.log('Global AppController - $state:', $state, '$rootScope: ', $rootScope);
         $scope.$state = $state;
       }
     ]);
