@@ -1,0 +1,15 @@
+.clear() {
+  content: ' ';
+  display: table;
+}
+
+.clear {
+  *zoom: 1;
+  &:before {
+    .clear();
+  }
+  &:after {
+    .clear();
+    clear: both;
+  }
+}

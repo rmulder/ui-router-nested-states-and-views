@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ui-router-named-views" class="no-js" xmlns:ng="http://angularjs.org">
+<head>
+  <meta charset="utf-8">
+  <title ng-bind="pageTitle"></title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
+  <link rel="stylesheet" type="text/css" href="<%= file %>"/>
+  <% }); %>
+</head>
+<body ng-controller="AppController" class="translate-cloak {{bodyClass}}">
+
+<div class="container">
+
+  <!-- Header -->
+  <div ui-view="header" class="row"></div>
+  <!-- <ui-view name="header" class="row"></ui-view> -->
+
+  <div class="row">
+    <!-- Sidebar/Nav -->
+    <div ui-view="sidebar" class="col-xs-3"></div>
+    <!-- <ui-view name="sidebar" class="col-xs-3"></ui-view> -->
+    <!-- Content -->
+    <div ui-view="content" class="col-xs-9"></div>
+    <!--<ui-view name="content" class="col-xs-9"></ui-view>  -->
+  </div>
+
+  <!-- Footer -->
+  <div ui-view="footer" class="row"></div>
+  <!--<ui-view name="footer" class="row"></ui-view>   -->
+</div>
+
+<!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
+<script type="text/javascript" src="<%= file %>"></script>
+<% }); %>
+
+</body>
+</html>

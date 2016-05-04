@@ -1,0 +1,6 @@
+{
+  "generator-ngbp": {
+    "projectName": "dsp",
+    "useCoffeescript": false
+  }
+}

@@ -1,0 +1,49 @@
+/*
+WARNING: main.less is used to dynamically generate main.css. Do *NOT* edit main.css directly!!
+Declare LESS Variables here:
+*/
+
+/**
+ * This is the main application stylesheet. It should include or import all
+ * stylesheets used throughout the application as this is the only stylesheet in
+ * the Grunt configuration that is automatically processed.
+ */
+
+/**
+ * First, we import the standard Twitter Bootstrap LESS files.
+ */
+@import "../../vendor/bootstrap/less/bootstrap.less";
+
+/**
+ * Second, we include our overridden Twitter Bootstrap variables.less file.
+ */
+@import "bootstrap/variables.less";
+
+/**
+ * Next is the Terafina main variables definition file. We must include it after the default Twitter one so we can
+ * override any variable definitions found in the imported stylesheets.
+ */
+@import "variables.less";
+
+@import 'modules/clearfix.less';
+
+/**
+ * Now we import the Terafina common LESS file. We must include it after the Twitter default ones so we can
+ * override any variable definitions found in the imported stylesheets.
+ */
+@import "../common/common.less";
+
+/**
+ * Then we include our custom mixins LESS file
+ */
+@import "mixins.less";
+
+@import 'modules/print.less';
+
+/**
+ * Now that all app-wide styles have been applied, we can load the styles for
+ * all the submodules and components we are using.
+ *
+ * TODO: In a later version of this boilerplate, I'd like to automate this.
+ */
+//@import "style.less";
